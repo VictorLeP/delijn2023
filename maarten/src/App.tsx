@@ -1,13 +1,13 @@
 import './App.css'
-import Stelplaats, { Busgrootte } from './Stelplaats'
+import Stelplaats, { IStelplaats } from './Stelplaats'
 
 function App() {
 
-  const test: Array<Busgrootte> = ["klein", "normaal", "groot"];
+  const test: Array<IStelplaats> = [{ id: 0, size: "klein", taken: true }, { id: 1, size: "normaal", taken: false }, { id: 2, size: "groot", taken: false }];
 
   return (
     <div style={{ display: "grid", gap: "20px" }}>
-      {test.map((t, index) => <Stelplaats key={index} size={t} />)}
+      {test.map((t, index) => <Stelplaats key={index} id={t.id} taken={t.taken} size={t.size} />)}
     </div>
   )
 }
