@@ -38,6 +38,9 @@ class Garage:
     def __repr__(self):
         return f"Garage(groot={self.groot}, medium={self.medium}, klein={self.klein})"
 
+    def retrieve_garage_spots(self):
+        return {k: {"size": v[0], "count": v[1]} for k, v in self.garage_spots.items()}
+
 class Stelplaats:
     def __init__(self, naam: str, parking: list, garage: Garage):
         self.naam = naam
