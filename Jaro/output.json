@@ -14,6 +14,147 @@
                 "normaal",
                 "normaal"
             ]
+        },
+        {
+            "size": "groot",
+            "id": 0,
+            "busses": [
+                "groot"
+            ]
+        },
+        {
+            "size": "groot",
+            "id": 0,
+            "busses": [
+                "groot"
+            ]
+        },
+        {
+            "size": "medium",
+            "id": 0,
+            "busses": [
+                "medium"
+            ]
+        },
+        {
+            "size": "medium",
+            "id": 0,
+            "busses": [
+                "medium"
+            ]
+        },
+        {
+            "size": "medium",
+            "id": 0,
+            "busses": [
+                "medium"
+            ]
+        },
+        {
+            "size": "medium",
+            "id": 0,
+            "busses": [
+                "medium"
+            ]
+        },
+        {
+            "size": "medium",
+            "id": 0,
+            "busses": [
+                "medium"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        },
+        {
+            "size": "klein",
+            "id": 0,
+            "busses": [
+                "gewone"
+            ]
+        }
+        
+       
+        
+        
+    ],
+
+    "parking": [
+        {
+            "size": "groot",
+            "id": 0,
+            "busses": [
+                "groot"
+            ]
+        },
+        {
+            "size": "groot",
+            "id": 0,
+            "busses": [
+                "normaal",
+                "normaal"
+            ]
         }
     ]
 }
