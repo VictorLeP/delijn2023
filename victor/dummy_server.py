@@ -7,10 +7,6 @@ def read_input_file(filename):
 
 schedulers = {}
 
-j = read_input_file('victor/input_unsorted.json')
+j = read_input_file('input_unsorted.json')
 
 
-s = scheduling.Scheduler()
-t = s.allocate_bus_schedule(j)
-
-pprint(t)
