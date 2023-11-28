@@ -3,10 +3,10 @@ export type Busgrootte = "klein" | "normaal" | "groot";
 export interface IStelplaats {
     size: Busgrootte;
     id: number;
-    taken: boolean;
+    busses: Array<Busgrootte>;
 }
 
-export default function Stelplaats({ size, id, taken }: IStelplaats) {
+export default function Stelplaats({ size, id, busses }: IStelplaats) {
 
     const base = 100;
 
@@ -25,11 +25,14 @@ export default function Stelplaats({ size, id, taken }: IStelplaats) {
         return `${base * modifier}px`;
     }
 
-    const background = taken ? "#FFDD00" : "#999999";
+    const background = "#999999";
 
 
     return <div style={{ display: "grid", placeItems: "center", width: sizeToStyle(size), backgroundColor: background, height: `${base}px`, position: "relative" }}>
         <span style={{ position: "absolute", top: "0", left: "0" }}>{id}</span>
-        {/* <img src="./Group 3.svg" style={{ objectFit: "contain", position: "relative" }}></img> */}
+        <div style={{ display: "flex" }}>
+            {busses.map(b => <div style={{ display: "grid", placeItems: "center", width: sizeToStyle(b), backgroundColor: background, height: `${base}px`, position: "relative" }}></div>)}
+            {/* <img src="./Group 3.svg" style={{ objectFit: "contain", position: "relative" }}></img> */}
+        </div>
     </div>
 }

@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div style={{ display: "grid", gap: "20px" }}>
-      {test.map((t, index) => <Stelplaats key={index} id={t.id} taken={t.taken} size={t.size} />)}
+      {test.map((t, index) => <Stelplaats key={index} id={t.id} busses={t.busses} size={t.size} />)}
     </div>
   )
 }
