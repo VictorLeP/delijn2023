@@ -1,55 +1,67 @@
 
-import json
-from pprint import pprint
+class Scheduler:
 
-def allocate_bus_schedule(j):
-    stelplaats = j["stelplaats"]
-    parking = j["parking"]
-    garage = j["garage"]
+    def __init__(self):
+        self.bus_type_sizes = {
+            "GROOT": 4,
+            "NORMAAL": 2,
+            "MINI": 1
+        }
 
-    # Map incompatibiliteit 
-    bus_type_to_garage_spot_mapping = {
-        "GROOT": "groot",
-        "NORMAAL": "medium",
-        "MINI": "klein"
-    }
+        self.stelplaatsen = {}
 
-    bus_type_sizes = {
-        "GROOT": 4,
-        "NORMAAL": 2,
-        "MINI": 1
-    }
-
-    garage_spots = { # (size, count)
-        "groot": (4, 4),
-        "medium": (2, 6),
-        "klein": (1, 10)
-    }
-
-    garage_allocations = {k: [] for k in garage_spots.keys()}
-
-    bus_type_counts = {k: 0 for k in bus_type_sizes.keys()}
-
-    # Sort buses by size, to optimize garage allocation
-    parking.sort(key=lambda x: bus_type_sizes[x["type"]], reverse=True)
-
-    for bus in parking:
-        bus_type_counts[bus["type"]] += 1 
-        for garage_spot_name, garage_spot_definition in garage_spots.items():
-            garage_spot_size, garage_spot_count = garage_spot_definition
-            # Check that bus could fit in garage spot
-            if bus_type_sizes[bus["type"]] <= garage_spot_size:
-                # Check if there are still garage spots available
-                if sum(
-                    [bus_type_sizes[bus["type"]] for bus in garage_allocations[garage_spot_name]]
-                    ) < (garage_spot_size * garage_spot_count):
-                    garage_allocations[garage_spot_name].append(bus)
-                    break
-        raise ValueError("No garage spot available for bus: {}".format(bus))
-
-    pprint(garage_allocations)
-
-        # bus_type_sizes[
+        self.stelplaatsen["De Lijn Arsenaal"] = Stelplaats("De Lijn Arsenaal")
 
 
-    # todo class BUS
+    def allocate_bus_schedule(self, j):
+        stelplaats_name = j["stelplaats"]
+        stelplaats = self.stelplaatsen[stelplaats_name]
+        parking = j["parking"]
+
+        garage_allocations = {k: [] for k in stelplaats.garage_spots.keys()}
+
+        # Sort buses by size, to optimize garage allocation
+        parking.sort(key=lambda x: self.bus_type_sizes[x["type"]], reverse=True)
+
+        for bus in parking:
+            allocated = False
+            for garage_spot_name, garage_spot_definition in stelplaats.garage_spots.items():
+                garage_spot_size, _ = garage_spot_definition
+                # Check that bus could fit in garage spot
+                if self.bus_type_sizes[bus["type"]] <= garage_spot_size:
+                    # Check if there are still garage spots available
+                    if stelplaats.remaining_garage_slots[garage_spot_name] > 0:
+                        garage_allocations[garage_spot_name].append(bus)
+                        stelplaats.remaining_garage_slots[garage_spot_name] -= self.bus_type_sizes[bus["type"]]
+                        allocated = True
+                        break
+            if not allocated:
+                raise ValueError("No garage spot available for bus: {}".format(bus))
+
+        return garage_allocations
+
+class Stelplaats:
+
+    def __init__(self, name):
+        self.name = name
+        self.garage_spots = { # (size, count)
+            "groot": (4, 4),
+            "medium": (2, 6),
+            "klein": (1, 10)
+        }
+
+        self.remaining_garage_slots = {
+            k: v[0] * v[1] for k, v in self.garage_spots.items()
+        }
+
+    def get_bus_type_sizes(self):
+        return self.bus_type_sizes
+    
+    def get_garage_spots(self):
+        return self.garage_spots
+
+    def get_bus_type_size(self, bus_type):
+        return self.bus_type_sizes[bus_type]
+    
+    def get_garage_spot(self, garage_spot_name):
+        return self.garage_spots[garage_spot_name]
