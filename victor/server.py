@@ -34,18 +34,9 @@ async def allocate_buses():
 
     return {
         "stelplaats": j["stelplaats"],
-        "parking": [], # TODO: could not be allocated
+        "parking":  s.stelplaatsen["De Lijn Arsenaal"].unallocated_buses,
         "garage": s.stelplaatsen["De Lijn Arsenaal"].garage.garage_allocations,
     }
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
-
 
 @app.get("/json")
 def read_json():

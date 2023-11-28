@@ -44,6 +44,8 @@ class Stelplaats:
         self.parking = parking
         self.garage = garage
 
+        self.unallocated_buses = []
+
 
     def __repr__(self):
         return f"Stelplaats(naam={self.naam}, parking={self.parking}, garage={self.garage})"

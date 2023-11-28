@@ -22,6 +22,8 @@ class Scheduler:
         # Sort buses by size, to optimize garage allocation
         parking.sort(key=lambda x: stelplaats.get_bus_type_sizes()[x["type"]], reverse=True)
 
+        unallocated_buses = stelplaats.unallocated_buses
+
         for bus in parking:
             allocated = False
             for garage_spot_name, garage_spot_definition in stelplaats.get_garage_spots().items():
@@ -35,6 +37,6 @@ class Scheduler:
                         allocated = True
                         break
             if not allocated:
-                raise ValueError("No garage spot available for bus: {}".format(bus))
+                unallocated_buses.append(bus)
 
         # return garage_allocations
