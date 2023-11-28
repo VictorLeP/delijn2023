@@ -1,0 +1,19 @@
+{
+    "stelplaatsen": [
+        {
+            "size": "groot",
+            "id": 0,
+            "busses": [
+                "groot"
+            ]
+        },
+        {
+            "size": "groot",
+            "id": 0,
+            "busses": [
+                "normaal",
+                "normaal"
+            ]
+        }
+    ]
+}

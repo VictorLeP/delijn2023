@@ -3,6 +3,8 @@ import Stelplaats, { IStelplaats } from './Stelplaats'
 
 function App() {
 
+  const [places, setPlaces] = useState([]);
+
   const test: Array<IStelplaats> = [{ id: 0, size: "klein", taken: true }, { id: 1, size: "normaal", taken: false }, { id: 2, size: "groot", taken: false }];
 
   return (
