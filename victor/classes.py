@@ -2,7 +2,7 @@ class Bus:
     def __init__(self, bus: str, type: str):
         self.bus = bus
         self.type = type
-        assert self.type in ["GROOT", "NORMAAL", "MINI"], "Invalid type!"
+        assert self.type in bus_type_sizes, "Invalid type!"
 
     def __repr__(self):
         return f"Bus(bus={self.bus}, type={self.type})"
@@ -16,11 +16,7 @@ bus_type_sizes = {
 
 
 class Garage:
-    def __init__(self, groot: list[Bus], medium: list[Bus], klein: list[Bus]):
-        self.groot = groot
-        self.medium = medium
-        self.klein = klein
-
+    def __init__(self):
 
         self.garage_spots = {  # (size, count)
             "groot": (4, 4),
@@ -42,16 +38,15 @@ class Garage:
         return {k: {"size": v[0], "count": v[1]} for k, v in self.garage_spots.items()}
 
 class Stelplaats:
-    def __init__(self, naam: str, parking: list, garage: Garage):
+    def __init__(self, naam: str, garage: Garage):
         self.naam = naam
-        self.parking = parking
         self.garage = garage
 
         self.unallocated_buses = []
 
 
     def __repr__(self):
-        return f"Stelplaats(naam={self.naam}, parking={self.parking}, garage={self.garage})"
+        return f"Stelplaats(naam={self.naam},  garage={self.garage})"
 
     def get_bus_type_sizes(self):
         return bus_type_sizes

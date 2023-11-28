@@ -7,8 +7,7 @@ class Scheduler:
         self.stelplaatsen = {}
 
         self.stelplaatsen["De Lijn Arsenaal"] = Stelplaats("De Lijn Arsenaal",
-                                                            parking=[],
-                                                           garage=Garage(groot=4, medium=2, klein=1)
+                                                           garage=Garage()
                                                            )
 
 
